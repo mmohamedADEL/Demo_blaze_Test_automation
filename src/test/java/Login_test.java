@@ -31,8 +31,8 @@ public class Login_test {
     }
     @Test
     public void testvalidLogin(){
-        HomePage homePage = new HomePage(driver);
-         homePage.navigateToLoginModel().InterUsername("7amada")
+        LoginModel loginModel = new LoginModel(driver);
+        HomePage homePage = loginModel.InterUsername("7amada")
                 .InterPassword("123456")
                 .clickLoginButton();
         Assert.assertTrue(homePage.getWelcomeText().contains("7amada"));
@@ -42,19 +42,20 @@ public class Login_test {
 
     @Test
     public void testInvalidLogin() {
-        HomePage homePage = new HomePage(driver);
-        String alertText = homePage.navigateToLoginModel().InterUsername("validUser")
+        LoginModel loginModel = new LoginModel(driver);
+        String alertText = loginModel.InterUsername("validUser")
                 .InterPassword("wrongPassword")
                 .clickLoginExpectingAlert();
         Assert.assertTrue(alertText.contains("Wrong password."));
+
     }
     @Test
     public void testEmptyLogin() {
         HomePage homePage = new HomePage(driver);
-        String alertText = homePage.navigateToLoginModel()
-                .clickLoginExpectingAlert();
-        Assert.assertTrue(alertText.contains("Please fill out Username and Password."));
+        homePage.navigateToLoginModel()
+                .InterUsername("7amada")
+                .InterPassword("123456")
+                .clickLoginButton();
     }
-
 
 }

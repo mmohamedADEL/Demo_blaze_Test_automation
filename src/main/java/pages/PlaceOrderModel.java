@@ -102,6 +102,7 @@ public class PlaceOrderModel {
     {
         driver.findElement(year).clear();
     }
+
     public String getAlertText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(alert));
@@ -111,5 +112,11 @@ public class PlaceOrderModel {
         return Utility.getAlertMessageThenAccept(driver);
 
     }
+
+
+
+
+
+
 
 }

@@ -23,9 +23,17 @@ public class PlaceOrderTest {
     }
 @Test
 public void testPlaceOrder() {
-    CartPage cartPage = new CartPage(driver);
 
+    PlaceOrderModel placeOrder = new PlaceOrderModel(driver);
 
+    placeOrder.enterCreditCard("1234567890123456")
+            .enterName("John Doe")
+            .enterCountry("USA")
+            .enterCity("New York")
+            .enterMonth("January")
+            .enterYear("2025")
+            .clickOnPurchaseButton()
+            .clickOnConfirmButton();
 }
 
 

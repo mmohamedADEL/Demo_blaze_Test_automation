@@ -15,6 +15,7 @@ public class HomePage {
     private final By loginButton = By.id("login2");
     private final By cartButton = By.id("cartur");
     private final By SignUpButton = By.id("signin2");
+    private final By aboutLink = By.xpath("//*[@data-target=\"#videoModal\"]");
 
     private final By PhoneCategory = By.xpath("//a[@onclick=\"byCat('phone')\"]");
     private final By LapTopCategory = By.xpath("//a[@onclick=\"byCat('notebook')\"]");
@@ -30,6 +31,15 @@ public class HomePage {
     public void clickOnLogoutButton() {
         Utility.clickOnElement(driver, logoutButton);
     }
+
+    public AboutModel navigateToAbout(){
+
+        Utility.waitForVisibility(driver,aboutLink);
+        Utility.clickOnElement(driver,aboutLink);
+
+        return new AboutModel(driver);
+    }
+
     public By getCategoryLocator(String categoryText) {
         return By.xpath("//a[@id='itemc' and @onclick=\"byCat('" + categoryText + "')\"]");
     }
@@ -72,5 +82,7 @@ public class HomePage {
         Utility.clickOnElement(driver, SignUpButton);
         return new SignUpModel(driver);
     }
+
+
 
 }

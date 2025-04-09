@@ -28,13 +28,14 @@ public class Utility {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
-    //TODO: generate clickability wait
+
     public static void waitForElementToBeClickable(WebDriver driver, By cartButton) {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(cartButton));
     }
 
     //TODO: get alert message
+
     public static String getAlertMessageThenAccept(WebDriver driver){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.alertIsPresent());
@@ -43,7 +44,7 @@ public class Utility {
         return alertText;
     }
 
-    //TODO: Method to accept the alert
+    // Method to accept the alert
     public static void acceptAlert(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.alertIsPresent());

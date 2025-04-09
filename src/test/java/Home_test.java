@@ -16,25 +16,26 @@ public class Home_test {
         driver.get("https://www.demoblaze.com/index.html");
 
     }
-    @AfterMethod
+    /*@AfterMethod
     public void tearDown() {
         // Close the browser after each test
         if (driver != null) {
             driver.quit();
         }
-    }
-//    @Test
-//    public void testSendMessage() {
-//        // Navigate to the contact form
-//        ContactModel contact = new ContactModel(driver);
-//
-//        // Fill in the contact form and send the message
-//        contact.fillContactForm("test@example.com", "Test User", "This is a test message")
-//                .clickSendButton()
-//                .dismissAlert();
-//
-//        // Add assertions here if needed to verify the behavior
-//    }
+    }*/
+   /* @Test
+   public void testSendMessage() {
+        // Navigate to the contact form
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateTo
+
+        // Fill in the contact form and send the message
+        contact.fillContactForm("test@example.com", "Test User", "This is a test message")
+                .clickSendButton()
+                .dismissAlert();
+
+        // Add assertions here if needed to verify the behavior
+    }*/
 //    @Test
 //    public void testAboutUs() {
 //        // Navigate to the "About Us" page
@@ -46,18 +47,29 @@ public class Home_test {
     @Test
    public void loginandSignUP(){
         HomePage homePage = new HomePage(driver);
+
+
         homePage.navigateToSignUpModel()
-                .InterUsername("seswwwd/")
+                .InterUsername("seswwwd/8")
                         .InterPassword("123456")
                                 .clickSignUpButton()
                 .AlertAccept()
                 .navigateToLoginModel()
-                .InterUsername("seswwwd/")
+                .InterUsername("seswwwd/8")
                         .InterPassword("123456")
-                                .clickLoginButton();
+                                .clickLoginButton()
+                .navigateToAbout()
+                    .clickCloseButton();
+
+
+
+
 
     }
-    @Test(dependsOnMethods = "loginandSignUP")
+
+
+
+    @Test()
     public void testChooseProduct(){
             HomePage homePage = new HomePage(driver);
         homePage.FindProduct("phone","Samsung galaxy s6")
@@ -70,6 +82,7 @@ public class Home_test {
                 .clickOnPurchaseButton()
                 .clickOnConfirmButton();
     }
+
     @Test
     public void CartTest(){
         HomePage homePage = new HomePage(driver);
