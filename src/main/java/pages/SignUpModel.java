@@ -18,10 +18,10 @@ public class SignUpModel {
     By signUpButton = By.xpath("//button[@onclick='register()']");
     public SignUpModel(WebDriver driver) {
         this.driver = driver;
-        Navbar navbar = new Navbar(driver);
-        navbar.ClickOnSignUp();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField));
+        // Wait for the sign-up modal to be visible
+        Utility.waitForVisibility(driver, usernameField);
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField));
     }
     public SignUpModel InterUsername(String username) {
         Utility.sendData(driver, this.usernameField, username);
@@ -42,6 +42,13 @@ public class SignUpModel {
         String alertText = driver.switchTo().alert().getText();
         driver.switchTo().alert().accept();
         return alertText;
+    }
+    public void clickCloseButton() {
+        Utility.clickOnElement(driver, closeButton);
+    }
+    public HomePage AlertAccept() {
+        Utility.acceptAlert(driver);
+        return new HomePage(driver);
     }
 
 }

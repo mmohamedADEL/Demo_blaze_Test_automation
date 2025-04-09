@@ -17,12 +17,10 @@ public class LoginModel {
     By closeButton = By.xpath("(//button[contains(text(),'Close')])[3]");
     public LoginModel(WebDriver driver) {
         this.driver = driver;
-        Navbar navbar = new Navbar(driver);
-        navbar.clickOnLogin();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(Username_field));
-
+        // Wait for the login modal to be visible
+        Utility.waitForVisibility(driver, Username_field);
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(Username_field));
     }
     public LoginModel InterUsername(String username) {
         Utility.sendData(driver, Username_field, username);

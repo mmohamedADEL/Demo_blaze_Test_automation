@@ -49,5 +49,13 @@ public class Login_test {
         Assert.assertTrue(alertText.contains("Wrong password."));
 
     }
+    @Test
+    public void testEmptyLogin() {
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToLoginModel()
+                .InterUsername("7amada")
+                .InterPassword("123456")
+                .clickLoginButton();
+    }
 
 }
