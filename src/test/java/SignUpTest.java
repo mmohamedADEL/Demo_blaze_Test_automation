@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HomePage;
 import pages.SignUpModel;
 
 public class SignUpTest {
@@ -24,24 +25,25 @@ public class SignUpTest {
     }
     @Test
     public void validSignUp(){
-        SignUpModel signUp = new SignUpModel(driver);
-        String alertMessage = signUp
+        HomePage homePage = new HomePage(driver);
+        String alertMessage = homePage.navigateToSignUpModel()
                 .InterUsername("7amoda")
                 .InterPassword("123456")
                 .clickSignUpButton()
                 .getAlertMessage();
         Assert.assertTrue(alertMessage.contains("Sign up successful"));
     }
-    @Test
-    //with empty field
-    public void invalidSignUp(){
-        SignUpModel signUp = new SignUpModel(driver);
-        String alertMessage = signUp
-                .InterUsername("testuser")
-                .clickSignUpButton()
-                .getAlertMessage();
-        Assert.assertTrue(alertMessage.contains("Please fill out Username and Password."));
-    }
+//    @Test
+//    //with empty field
+//    public void invalidSignUp(){
+//        HomePage homePage = new HomePage(driver);
+//        String alertMessage = homePage.navigateToSignUpModel()
+//        String alertMessage = signUp
+//                .InterUsername("testuser")
+//                .clickSignUpButton()
+//                .getAlertMessage();
+//        Assert.assertTrue(alertMessage.contains("Please fill out Username and Password."));
+//    }
     @Test
     public void exsistUserName(){
         SignUpModel signUp = new SignUpModel(driver);

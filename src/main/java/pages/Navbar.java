@@ -29,9 +29,8 @@ public class Navbar {
         Utility.clickOnElement(driver, aboutLink);
         //return new AboutPage(driver);
     }
-    public CartPage clickOnCart() {
+    public void clickOnCart() {
         Utility.clickOnElement(driver, cart);
-        return new CartPage(driver);
     }
     public void clickOnLogin() {
         Utility.clickOnElement(driver, login);

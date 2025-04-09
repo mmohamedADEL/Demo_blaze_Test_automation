@@ -107,5 +107,9 @@ public class PlaceOrderModel {
         wait.until(ExpectedConditions.visibilityOfElementLocated(alert));
         return driver.findElement(alert).getText();
     }
+    public String getAlertTextThenAccept() {
+        return Utility.getAlertMessageThenAccept(driver);
+
+    }
 
 }

@@ -1,11 +1,9 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.Assert;
 import org.testng.annotations.*;
-import pages.AboutModel;
-import pages.ContactModel;
-import pages.HomePage;
-import pages.ProductPage;
+import pages.*;
 
 public class Home_test {
     WebDriver driver;
@@ -72,6 +70,29 @@ public class Home_test {
                 .clickOnPurchaseButton()
                 .clickOnConfirmButton();
     }
+    @Test
+    public void CartTest(){
+        HomePage homePage = new HomePage(driver);
+        CartPage cartPage = new CartPage(driver);
+        homePage.FindProduct("phone","Samsung galaxy s6")
+                .clickOnAddToCartButton()
+                .acceptAlert()
+                .navigateToHomePage()
+                .FindProduct("phone","Samsung galaxy s6")
+                .clickOnAddToCartButton()
+                .acceptAlert()
+                .navigateToHomePage()
+                .FindProduct("phone","Samsung galaxy s6")
+                .clickOnAddToCartButton()
+                .acceptAlert()
+                .navigateToCart();
+//        Assert.assertTrue(cartPage.isProductInCart("Samsung galaxy s6") ,
+//                "Product is not in the cart");
+        Assert.assertEquals(cartPage.calculateTotalPriceFromItems(), cartPage.getDisplayedTotalFromUI(),
+                "Total price calculation is incorrect");
+
+    }
+
 
 
 

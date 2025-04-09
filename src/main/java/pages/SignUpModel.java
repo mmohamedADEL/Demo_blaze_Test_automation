@@ -37,10 +37,7 @@ public class SignUpModel {
         return this;
     }
     public String getAlertMessage(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.alertIsPresent());
-        String alertText = driver.switchTo().alert().getText();
-        driver.switchTo().alert().accept();
+        String alertText = Utility.getAlertMessageThenAccept(driver);
         return alertText;
     }
     public void clickCloseButton() {
