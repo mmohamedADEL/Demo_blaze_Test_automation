@@ -1,0 +1,22 @@
+{
+  "LoginCred": {
+    "username": "7amada",
+    "password": "123456"
+  },
+
+  "CheckoutData": {
+    "Name": "Omar",
+    "Country": "Egypt",
+    "City": "cairo",
+    "CreditCard": "0223652",
+    "Month": "11",
+    "Year": "2025"
+  },
+
+  "ContactData": {
+    "email":"omar@gmail.com",
+    "name": "omar",
+    "message": "thanks for these comfortable website"
+  }
+
+}
