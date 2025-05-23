@@ -6,28 +6,27 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import pages.PlaceOrderModel;
+import models.PlaceOrderModel;
 import utilities.DataUtil;
 
 public class PurchaseWithoutLogin {
     WebDriver driver;
 
-    @BeforeClass
+    @BeforeMethod
     public void setup() {
         driver = new EdgeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.demoblaze.com/index.html");
     }
-    /*@AfterMethod
+    @AfterMethod
     public void tearDown() {
-        // Close the browser after each test
         if (driver != null) {
             driver.quit();
         }
-    }*/
+    }
 
     @Test
-    public void buyWitoutLogin(){
+    public void buyWithoutLogin(){
 
         HomePage homePage = new HomePage(driver);
         homePage.FindProduct("phone","Iphone 6 32gb")

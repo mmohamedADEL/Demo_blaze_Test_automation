@@ -1,12 +1,10 @@
-package pages;
+package models;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.HomePage;
+import utilities.LogUtility;
 import utilities.Utility;
-
-import java.time.Duration;
 
 public class SignUpModel {
     WebDriver driver;
@@ -18,18 +16,17 @@ public class SignUpModel {
     By signUpButton = By.xpath("//button[@onclick='register()']");
     public SignUpModel(WebDriver driver) {
         this.driver = driver;
-        // Wait for the sign-up modal to be visible
         Utility.waitForVisibility(driver, usernameField);
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField));
     }
     public SignUpModel InterUsername(String username) {
         Utility.sendData(driver, this.usernameField, username);
+        LogUtility.info("Username entered: " + username);
         return this;
     }
 
     public SignUpModel InterPassword(String password) {
         Utility.sendData(driver, this.passwordField, password);
+        LogUtility.info("Password entered: " + password);
         return this;
     }
     public SignUpModel clickSignUpButton() {
@@ -38,6 +35,7 @@ public class SignUpModel {
     }
     public String getAlertMessage(){
         String alertText = Utility.getAlertMessageThenAccept(driver);
+        LogUtility.info("Alert message: " + alertText);
         return alertText;
     }
     public void clickCloseButton() {

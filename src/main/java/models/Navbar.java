@@ -1,7 +1,8 @@
-package pages;
+package models;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.HomePage;
 import utilities.Utility;
 
 public class Navbar {
@@ -23,18 +24,15 @@ public class Navbar {
     }
     public void openContactPopup() {
         Utility.clickOnElement(driver, contact);
-       // return new ContactModel(driver);
     }
     public void clickOnAboutLink() {
         Utility.clickOnElement(driver, aboutLink);
-        //return new AboutPage(driver);
     }
     public void clickOnCart() {
         Utility.clickOnElement(driver, cart);
     }
     public void clickOnLogin() {
         Utility.clickOnElement(driver, login);
-       // return new LoginModel(driver);
     }
     public void ClickOnSignUp() {
         Utility.clickOnElement(driver, signUp);

@@ -8,7 +8,7 @@
             <class name="LoginChoosePurchase"/>
             <class name="CheckoutWithEmptyCart"/>
             <class name="PurchaseWithoutLogin"/>
-
+            <class name="Login_test"/>
         </classes>
     </test>
 </suite>

@@ -1,9 +1,13 @@
 package pages;
 
+import models.AboutModel;
+import models.LoginModel;
+import models.SignUpModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.LogUtility;
 import utilities.Utility;
 
 import java.time.Duration;
@@ -57,11 +61,11 @@ public class HomePage {
         return new ProductPage(driver);
     }
     public ProductPage FindProduct(String category ,String productName) {
-        clickOnCategory(category);
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(getProductByName(productName)));
-
+        // Wait for the product to be visible
+        Utility.waitForVisibility(driver, getProductByName(productName));
+        // Wait for the product to be clickable
+        Utility.waitForElementToBeClickable(driver, getProductByName(productName));
+        LogUtility.info("Clicking on product: " + productName);
         Utility.clickOnElement(driver, getProductByName(productName));
         return new ProductPage(driver);
     }
@@ -70,8 +74,8 @@ public class HomePage {
         return new CartPage(driver);
     }
     public String getWelcomeText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(welcomeMessage));
+        // Wait for the welcome message to be visible
+        Utility.waitForVisibility(driver, welcomeMessage);
         return driver.findElement(welcomeMessage).getText();
     }
     public LoginModel navigateToLoginModel() {

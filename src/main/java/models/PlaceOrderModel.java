@@ -1,9 +1,12 @@
-package pages;
+package models;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.CartPage;
+import pages.HomePage;
+import utilities.LogUtility;
 import utilities.Utility;
 
 import java.time.Duration;
@@ -25,32 +28,38 @@ public class PlaceOrderModel {
 
     public PlaceOrderModel(WebDriver driver) {
         this.driver = driver;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(name));
+        // Wait for the page to load
+        Utility.waitForVisibility(driver, name);
     }
     public PlaceOrderModel enterName(String nameText) {
         Utility.sendData(driver, name, nameText);
+        LogUtility.info("Name entered: " + nameText);
         return this;
     }
     public PlaceOrderModel enterCountry(String countryText) {
         Utility.sendData(driver, country, countryText);
+        LogUtility.info("Country entered: " + countryText);
         return this;
     }
     public PlaceOrderModel enterCity(String cityText) {
         Utility.sendData(driver, city, cityText);
+        LogUtility.info("City entered: " + cityText);
         return this;
     }
     public PlaceOrderModel enterCreditCard(String cardText) {
         Utility.sendData(driver, creditCard, cardText);
+        LogUtility.info("Credit card entered: " + cardText);
         return this;
     }
     public PlaceOrderModel enterMonth(String monthText) {
         Utility.sendData(driver, month, monthText);
+        LogUtility.info("Month entered: " + monthText);
         return this;
     }
 
     public PlaceOrderModel enterYear(String yearText) {
         Utility.sendData(driver, year, yearText);
+        LogUtility.info("Year entered: " + yearText);
         return this;
     }
     public PlaceOrderModel clickOnPurchaseButton() {
@@ -104,13 +113,19 @@ public class PlaceOrderModel {
     }
 
     public String getAlertText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(alert));
-        return driver.findElement(alert).getText();
+        // Wait for the alert to be visible
+        Utility.waitForVisibility(driver, alert);
+        // Switch to the alert and get its text
+        String alertText = Utility.getAlertMessage(driver);
+        LogUtility.info("Alert message: " + alertText);
+        return Utility.getAlertMessageThenAccept(driver);
     }
     public String getAlertTextThenAccept() {
         return Utility.getAlertMessageThenAccept(driver);
 
+    }
+    public boolean isConfirmationButtonDisabled() {
+        return driver.findElement(confirmButton).getAttribute("disabled") != null;
     }
 
 

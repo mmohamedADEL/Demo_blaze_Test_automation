@@ -1,20 +1,16 @@
-package pages;
+package models;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.HomePage;
+import utilities.LogUtility;
 import utilities.Utility;
-
-import java.time.Duration;
 
 public class ContactModel {
     private WebDriver driver;
     public ContactModel(WebDriver driver) {
         this.driver = driver;
         Utility.waitForVisibility(driver, emailField);
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(emailField));
     }
 
 
@@ -30,24 +26,27 @@ public class ContactModel {
 
     //method to fill in the contact form
     public ContactModel fillContactForm(String email, String name, String message) {
-        driver.findElement(emailField).sendKeys(email);
-        driver.findElement(nameField).sendKeys(name);
-        driver.findElement(messageField).sendKeys(message);
+        Utility.sendData(driver , emailField, email);
+        LogUtility.info("Email entered: " + email);
+        Utility.sendData(driver , nameField, name);
+        LogUtility.info("Name entered: " + name);
+        Utility.sendData(driver , messageField, message);
+        LogUtility.info("Message entered: " + message);
         return this;
     }
     //method to click the send button
     public ContactModel clickSendButton() {
-        driver.findElement(sendButton).click();
+        Utility.clickOnElement(driver , sendButton);
         return this;
     }
     //method to click the close button
     public ContactModel clickCloseButton() {
-        driver.findElement(closeButton).click();
+        Utility.clickOnElement(driver , closeButton);
         return this;
     }
     //method to dismiss alert
-    public HomePage dismissAlert() {
-        driver.switchTo().alert().accept();
+    public HomePage acceptAlert() {
+        Utility.acceptAlert(driver);
         return  new HomePage(driver);
     }
 

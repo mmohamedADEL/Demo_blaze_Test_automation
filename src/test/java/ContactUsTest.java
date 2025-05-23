@@ -1,26 +1,35 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.ContactModel;
+import models.ContactModel;
 import pages.HomePage;
-import pages.Navbar;
+import models.Navbar;
 import utilities.DataUtil;
 
 public class ContactUsTest {
 
     WebDriver driver;
 
-    @BeforeClass
+    @BeforeMethod
     public void setup() {
         driver = new EdgeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.demoblaze.com/index.html");
 
     }
+    @AfterMethod
+    public void tearDown() {
+        // Close the browser after each test
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
-    @Test(invocationCount = 3)
+    @Test
     public void validContactUs()
     {
         HomePage homePage = new HomePage(driver);
@@ -44,12 +53,8 @@ public class ContactUsTest {
 
         new ContactModel(driver).fillContactForm(DataUtil.getJsonData("TestData","ContactData","email"),DataUtil.getJsonData("TestData","ContactData","name"),DataUtil.getJsonData("TestData","ContactData","message"))
                 .clickSendButton()
-                .dismissAlert();
+                .acceptAlert();
         homePage.clickOnLogoutButton();
-
-
-
-
 
 
     }

@@ -3,7 +3,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.HomePage;
-import pages.PlaceOrderModel;
+import models.PlaceOrderModel;
 import utilities.DataUtil;
 
 public class emptyDataTest {
@@ -11,39 +11,21 @@ public class emptyDataTest {
     WebDriver driver;
 
 
-    @BeforeClass
+    @BeforeMethod
     public void setup() {
         driver = new EdgeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.demoblaze.com/index.html");
 
     }
-   /* @AfterClass
+   @AfterMethod
     public void tearDown() {
         // Close the browser after each test
         if (driver != null) {
             driver.quit();
         }
     }
-
-*/
-
-
-
-   /* @Test
-    public void testvalidLogin(){
-
-        HomePage homePage =new HomePage(driver);
-
-        homePage.navigateToLoginModel().InterUsername(DataUtil.getJsonData("TestData","LoginCred","username"))
-                .InterPassword(DataUtil.getJsonData("TestData","LoginCred","password"))
-                .clickLoginButton();
-        Assert.assertTrue(homePage.getWelcomeText().contains("7amada"));
-    }*/
-
-
-
-    @Test(invocationCount = 3)
+    @Test
     public void testBuyProductWithEmptyCreditCard(){
         HomePage homePage = new HomePage(driver);
 
